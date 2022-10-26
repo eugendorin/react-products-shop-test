@@ -1,0 +1,15 @@
+.navbar {
+  background-color: $primary;
+  height: 2.5rem;
+
+  &-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: $color-contrast-light;
+
+    &:hover {
+      color: rgba($color-contrast-light, .9);
+    }
+  }
+}

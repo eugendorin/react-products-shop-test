@@ -1,4 +1,5 @@
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import { ImageWrapper, LoadingSpinner } from './';
 import { formatPrice } from 'utils';
@@ -19,9 +20,9 @@ export function Product({
         {hasError
           ? (
             <div className='w-100 h-100 center-content'>
-              <div class="alert alert-danger" role="alert">
+              <Alert variant="danger">
                 Error while loading this image
-              </div>
+              </Alert>
             </div>
             )
           : hasLoaded

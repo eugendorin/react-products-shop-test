@@ -1,0 +1,22 @@
+.nav-link {
+  &:hover {
+    i {
+      color: rgba($color-contrast-light, .9);
+    }
+  }
+
+  i {
+    font-size: 1.2rem;
+    color: $color-contrast-light;
+
+  }
+
+  .badge {
+    padding: 0.05rem 0.25rem;
+    font-size: 0.65rem;
+    position: absolute;
+    color: $color-contrast-light;
+    top: -20%;
+    left: 50%;
+  }
+}

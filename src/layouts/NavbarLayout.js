@@ -8,11 +8,7 @@ export default function NavbarLayout () {
           <Navbar />
       </header>
 
-      <div className="overflow-scroll h-100 w-100 navbar-pt">
-        <div className="h-100 w-100">
-          <Outlet />
-        </div>
-      </div>
+      <Outlet />
     </div>
   )
 }

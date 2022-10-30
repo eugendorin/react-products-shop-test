@@ -1,34 +1,25 @@
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
-import Card from 'react-bootstrap/Card';
-import { ImageWrapper, LoadingSpinner } from './';
-import { formatPrice } from 'utils';
-import { useImage } from 'hooks';
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+import Card from "react-bootstrap/Card";
+import { ImageWrapper, LoadingSpinner } from "./";
+import { formatPrice } from "utils";
+import { useImage } from "hooks";
 
-export function Product({
-  name,
-  description,
-  price,
-  image,
-  onClick
-}) {
+export function Product({ name, description, price, image, onClick }) {
   const { hasError, hasLoaded } = useImage(image);
 
   return (
     <Card>
       <ImageWrapper>
-        {hasError
-          ? (
-            <div className='w-100 h-100 center-content'>
-              <Alert variant="danger">
-                Error while loading this image
-              </Alert>
-            </div>
-            )
-          : hasLoaded
-            ? (<Card.Img alt={`${name}`} src={image}/>)
-            : (<LoadingSpinner />)
-        }
+        {hasError ? (
+          <div className="w-100 h-100 center-content">
+            <Alert variant="danger">Error while loading this image</Alert>
+          </div>
+        ) : hasLoaded ? (
+          <Card.Img alt={`${name}`} src={image} />
+        ) : (
+          <LoadingSpinner />
+        )}
       </ImageWrapper>
 
       <Card.Body>
@@ -40,5 +31,5 @@ export function Product({
         </div>
       </Card.Body>
     </Card>
-  )
+  );
 }

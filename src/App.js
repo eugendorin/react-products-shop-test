@@ -1,9 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import NavbarLayout from "layouts/NavbarLayout";
-import Cart from "./pages/Cart";
-import Products from "./pages/Products";
-import Confirmation from "./pages/Confirmation";
+import { Cart, Products, Confirmation } from "pages";
 import ROUTES from "routes";
 
 function App() {

@@ -1,7 +1,7 @@
-import { Badge, Container, Nav, Navbar as BootstrapNavbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import ROUTES from 'routes';
-import { useSelector } from 'react-redux';
+import { Badge, Container, Nav, Navbar as BootstrapNavbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import ROUTES from "routes";
+import { useSelector } from "react-redux";
 
 export function Navbar() {
   const { cart } = useSelector((state) => state.cart);

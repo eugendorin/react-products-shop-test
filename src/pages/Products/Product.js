@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
-import { ImageWrapper, LoadingSpinner } from "./";
+import { ImageWrapper, LoadingSpinner } from "../../components";
 import { formatPrice } from "utils";
 import { useImage } from "hooks";
 

@@ -1,15 +1,19 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Container } from "react-bootstrap";
 import { fetchProducts } from "store/product";
 import { addProduct } from "store/cart";
 import { usePaginatedItems } from "hooks";
-import { LoadingSpinner, Product, Pagination } from "components";
-import { Container } from "react-bootstrap";
+import { LoadingSpinner, Pagination } from "components";
+import { Product } from "./Product";
 
 export function Products() {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
-  const [pageProducts, activePage, changePage, pagesArray] = usePaginatedItems(products, 1);
+  const [pageProducts, activePage, changePage, pagesArray] = usePaginatedItems(
+    products,
+    1
+  );
   const scrollableEl = useRef(null);
 
   useEffect(() => {
@@ -49,7 +53,11 @@ export function Products() {
         </div>
 
         <div className="d-flex justify-content-center align-items-center mt-5">
-          <Pagination activePage={activePage} changePage={changePage} pagesArray={pagesArray} />
+          <Pagination
+            activePage={activePage}
+            changePage={changePage}
+            pagesArray={pagesArray}
+          />
         </div>
       </Container>
     </div>

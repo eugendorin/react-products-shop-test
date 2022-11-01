@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loadState, saveState } from "utils";
 
 const BROWSER_STORAGE_CART_KEY = "shopping_cart";
-const saveBrowserCartStorage = (state) => saveState(BROWSER_STORAGE_CART_KEY, state);
+const saveBrowserCartStorage = (state) =>
+  saveState(BROWSER_STORAGE_CART_KEY, state);
 const getBrowserCartStorage = () => loadState(BROWSER_STORAGE_CART_KEY);
 
 export const cartSlice = createSlice({
@@ -12,7 +13,9 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      const itemInCart = state.cart.find((item) => item.id === action.payload.id);
+      const itemInCart = state.cart.find(
+        (item) => item.id === action.payload.id
+      );
       if (itemInCart) {
         itemInCart.quantity++;
       } else {
@@ -21,13 +24,35 @@ export const cartSlice = createSlice({
       saveBrowserCartStorage(state.cart);
     },
     removeProduct: (state, action) => {
-      const itemsRemainingInCart = state.cart.filter((item) => item.id === action.payload.id);
+      const itemsRemainingInCart = state.cart.filter(
+        (item) => item.id !== action.payload.id
+      );
       state.cart = itemsRemainingInCart;
       saveBrowserCartStorage(state.cart);
     },
     updateQuantity: (state, action) => {
       const updatedItemsInCart = state.cart.map((item) =>
-        item.id === action.payload.id ? (item.quantity = action.payload.updatedQuantity) : item
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.newQuantity }
+          : item
+      );
+      state.cart = updatedItemsInCart;
+      saveBrowserCartStorage(state.cart);
+    },
+    increaseQuantity: (state, action) => {
+      const updatedItemsInCart = state.cart.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      state.cart = updatedItemsInCart;
+      saveBrowserCartStorage(state.cart);
+    },
+    decreaseQuantity: (state, action) => {
+      const updatedItemsInCart = state.cart.map((item) =>
+        item.id === action.payload.id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
       );
       state.cart = updatedItemsInCart;
       saveBrowserCartStorage(state.cart);
@@ -41,7 +66,14 @@ export const cartSlice = createSlice({
   }
 });
 
-export const { addProduct, removeProduct, updateQuantity, applyVoucher, productsPurchased } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  removeProduct,
+  updateQuantity,
+  increaseQuantity,
+  decreaseQuantity,
+  applyVoucher,
+  productsPurchased
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

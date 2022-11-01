@@ -1,15 +1,27 @@
 import { useDispatch } from "react-redux";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import { CartProductItem } from "components";
-import { removeProduct, updateQuantity } from "store/cart";
+import { CartProductItem } from "./CartProductItem";
+import {
+  removeProduct,
+  updateQuantity,
+  increaseQuantity,
+  decreaseQuantity
+} from "store/cart";
 
 export default function ShoppingList({ cart }) {
   const dispatch = useDispatch();
 
   const onRemoveProduct = (product) => dispatch(removeProduct(product));
-  const onUpdateQuantity = (product, newQuantity) =>
+
+  const onUpdateQuantity = (product, newQuantity) => {
     dispatch(updateQuantity({ ...product, newQuantity }));
+  };
+  const onIncreaseQuantity = (product) =>
+    dispatch(increaseQuantity({ ...product }));
+
+  const onDecreaseQuantity = (product) =>
+    dispatch(decreaseQuantity({ ...product }));
 
   return (
     <Card.Body className="p-5">
@@ -17,7 +29,7 @@ export default function ShoppingList({ cart }) {
 
       <ListGroup as="ol" className="mt-1 p-0">
         {cart.map((product) => {
-          const { name, id, image, price, discountPrice } = product;
+          const { name, id, image, price, discountPrice, quantity } = product;
           return (
             <ListGroup.Item
               key={id}
@@ -30,8 +42,13 @@ export default function ShoppingList({ cart }) {
                 image={image}
                 price={price}
                 discountPrice={discountPrice}
+                quantity={quantity}
                 // onApplyCoupon={onApplyCoupon}
-                onUpdateQuantity={(newQuantity) => onUpdateQuantity(product, newQuantity)}
+                onUpdateQuantity={(newQuantity) =>
+                  onUpdateQuantity(product, newQuantity)
+                }
+                onIncreaseQuantity={() => onIncreaseQuantity(product)}
+                onDecreaseQuantity={() => onDecreaseQuantity(product)}
                 onRemoveProduct={() => onRemoveProduct(product)}
               />
             </ListGroup.Item>

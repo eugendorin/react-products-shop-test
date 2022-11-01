@@ -12,7 +12,7 @@ export function Cart() {
     <div className="navbar-pt">
       <Container className="py-3">
         <Card
-          className="w-75 rounded-full border-0"
+          className="w-100 rounded-full border-0"
           // style={{ margin: "auto", background: "#f3f3f3" }}
         >
           {cart.length === 0 ? (

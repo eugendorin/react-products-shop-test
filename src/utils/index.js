@@ -1,1 +1,2 @@
-export * from "./formatPrice";
+export * from "./format-price";
+export * from "./browser-storage";

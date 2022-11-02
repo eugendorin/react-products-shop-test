@@ -6,7 +6,8 @@ import {
   removeProduct,
   updateQuantity,
   increaseQuantity,
-  decreaseQuantity
+  decreaseQuantity,
+  applyVoucher
 } from "store/cart";
 
 export default function ShoppingList({ cart }) {
@@ -23,13 +24,17 @@ export default function ShoppingList({ cart }) {
   const onDecreaseQuantity = (product) =>
     dispatch(decreaseQuantity({ ...product }));
 
+  const onApplyVoucher = (product, voucherApplied) =>
+    dispatch(applyVoucher({ ...product, voucherApplied }));
+
   return (
     <Card.Body className="p-5">
       <Card.Title as="h2">Shopping cart</Card.Title>
 
       <ListGroup as="ol" className="mt-1 p-0">
         {cart.map((product) => {
-          const { name, id, image, price, discountPrice, quantity } = product;
+          const { name, id, image, price, discountPrice, quantity, vouchers } =
+            product;
           return (
             <ListGroup.Item
               key={id}
@@ -43,13 +48,16 @@ export default function ShoppingList({ cart }) {
                 price={price}
                 discountPrice={discountPrice}
                 quantity={quantity}
-                // onApplyCoupon={onApplyCoupon}
+                vouchers={vouchers}
                 onUpdateQuantity={(newQuantity) =>
                   onUpdateQuantity(product, newQuantity)
                 }
                 onIncreaseQuantity={() => onIncreaseQuantity(product)}
                 onDecreaseQuantity={() => onDecreaseQuantity(product)}
                 onRemoveProduct={() => onRemoveProduct(product)}
+                onApplyVoucher={(voucherApplied) =>
+                  onApplyVoucher(product, voucherApplied)
+                }
               />
             </ListGroup.Item>
           );

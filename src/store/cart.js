@@ -6,6 +6,16 @@ const saveBrowserCartStorage = (state) =>
   saveState(BROWSER_STORAGE_CART_KEY, state);
 const getBrowserCartStorage = () => loadState(BROWSER_STORAGE_CART_KEY);
 
+const getVouchersByAppliedName = (vouchers, voucherName) =>
+  vouchers.map((voucher) =>
+    voucher.name === voucherName
+      ? { ...voucher, isApplied: true }
+      : { ...voucher, isApplied: false }
+  );
+
+const getVouchersDiscount = (vouchers) =>
+  vouchers.find(({ isApplied }) => isApplied)?.discount ?? 0;
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -56,13 +66,27 @@ export const cartSlice = createSlice({
       );
       state.cart = updatedItemsInCart;
       saveBrowserCartStorage(state.cart);
+    },
+    applyVoucher: (state, action) => {
+      const { voucherApplied, id } = action.payload;
+
+      const updatedItemsInCart = state.cart.map((item) => {
+        if (item.id === id) {
+          const vouchers = getVouchersByAppliedName(
+            item.vouchers,
+            voucherApplied
+          );
+          const discountPrice =
+            item.price - item.price * (getVouchersDiscount(vouchers) / 100);
+
+          return { ...item, discountPrice, vouchers };
+        }
+
+        return item;
+      });
+      state.cart = updatedItemsInCart;
+      saveBrowserCartStorage(state.cart);
     }
-    // applyVoucher: (state, action) => {
-    //   //
-    // },
-    // productsPurchased: (state, action) => {
-    //   //
-    // }
   }
 });
 

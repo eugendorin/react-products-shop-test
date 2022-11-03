@@ -35,6 +35,7 @@ export default function QuantityInputGroup({
     setValue("quantity", quantity);
     if (!isNaN(quantity)) clearErrors("quantity");
   }, [quantity, setValue]);
+
   return (
     <InputGroup className="d-flex">
       <Button variant="outline-secondary" onClick={onIncreaseQuantity}>

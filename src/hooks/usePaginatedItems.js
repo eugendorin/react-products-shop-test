@@ -2,7 +2,10 @@ import { useMemo, useState } from "react";
 
 export const usePaginatedItems = (items, initialPage = 1, itemsPerPage = 5) => {
   const [pageIndex, setPageIndex] = useState(initialPage - 1);
-  const pageItems = items.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage);
+  const pageItems = items.slice(
+    pageIndex * itemsPerPage,
+    (pageIndex + 1) * itemsPerPage
+  );
   const page = pageIndex + 1;
   const changePage = (pageNumber) => setPageIndex(pageNumber - 1);
 

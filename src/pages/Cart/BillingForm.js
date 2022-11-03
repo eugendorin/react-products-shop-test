@@ -8,7 +8,8 @@ import { Select, FormGroupItem } from "components";
 import { useCountries } from "api";
 import { useMemo } from "react";
 
-const phoneRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+const phoneRegExp =
+  /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 
 const schema = yup
   .object({
@@ -129,9 +130,16 @@ export default function BillingForm({ onSubmit }) {
           />
         </FormGroupItem>
 
-        <Button className="mx-5 mb-5" variant="primary" type="submit">
-          Next
-        </Button>
+        <div>
+          <Button
+            className="my-4"
+            variant="primary"
+            type="submit"
+            style={{ width: "100%" }}
+          >
+            Next
+          </Button>
+        </div>
       </Form>
     </Card.Body>
   );

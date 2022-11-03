@@ -11,10 +11,7 @@ export function Cart() {
   return (
     <div className="navbar-pt">
       <Container className="py-3">
-        <Card
-          className="w-100 rounded-full border-0"
-          // style={{ margin: "auto", background: "#f3f3f3" }}
-        >
+        <Card className="w-100 rounded-full border-0">
           {cart.length === 0 ? (
             <EmptyCart />
           ) : (

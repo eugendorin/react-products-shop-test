@@ -1,5 +1,5 @@
 import { Button, InputGroup, Form } from "react-bootstrap";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { AlertModal } from "components";
 

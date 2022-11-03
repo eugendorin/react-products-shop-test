@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import camelcaseKeys from "camelcase-keys";
 
-export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
-  const res = await fetch("data/products.json");
-  return res.json();
-});
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
+  async () => {
+    const res = await fetch("data/products.json");
+    return res.json();
+  }
+);
 
 export const productsSlice = createSlice({
   name: "products",

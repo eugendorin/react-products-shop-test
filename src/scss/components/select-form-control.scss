@@ -1,0 +1,19 @@
+.select-form-control {
+
+  .form-control {
+
+    [class*="ValueContainer"] {
+      padding: 0;
+    }
+
+    [class*="Input"] {
+      padding: 0;
+      margin: 0;
+    }
+
+    [class*="indicatorContainer"] {
+      padding: 2px;
+    }
+  }
+
+}

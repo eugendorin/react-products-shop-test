@@ -7,7 +7,7 @@ import { Container, Card } from "react-bootstrap";
 import { useEffect } from "react";
 import { formatPrice } from "utils";
 
-export function Confirmation() {
+export default function Confirmation() {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();

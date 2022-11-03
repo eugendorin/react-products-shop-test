@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Table } from "react-bootstrap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { confirmPurchase } from "store/cart";
 import ROUTES from "routes";
 import { Container, Card } from "react-bootstrap";
-import { useEffect } from "react";
 import { formatPrice } from "utils";
 
 export default function Confirmation() {
@@ -13,10 +12,6 @@ export default function Confirmation() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { billingData } = state ?? {};
-
-  useEffect(() => {
-    if (!billingData) navigate(ROUTES.root);
-  }, [billingData]);
 
   const totalAmount = formatPrice(
     cart.reduce((acc, curr) => {
@@ -31,6 +26,8 @@ export default function Confirmation() {
     dispatch(confirmPurchase());
     navigate(ROUTES.root);
   };
+
+  if (!billingData) return <Navigate to={ROUTES.root} replace />;
 
   return (
     <div className="navbar-pt">

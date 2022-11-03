@@ -28,6 +28,7 @@ $grid-columns: 12;
 @import "~bootstrap/scss/alert";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tables";
 
 // 6. Add additional custom code here
 @import "./general.scss";
@@ -36,4 +37,3 @@ $grid-columns: 12;
 @import "./components/navbar.scss";
 @import "./components/nav.scss";
 @import "./components/select-form-control.scss";
-// Pages

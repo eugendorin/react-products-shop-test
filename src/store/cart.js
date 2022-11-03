@@ -19,7 +19,8 @@ const getVouchersDiscount = (vouchers) =>
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    cart: getBrowserCartStorage() ?? []
+    cart: getBrowserCartStorage() ?? [],
+    billingData: null
   },
   reducers: {
     addProduct: (state, action) => {
@@ -86,6 +87,10 @@ export const cartSlice = createSlice({
       });
       state.cart = updatedItemsInCart;
       saveBrowserCartStorage(state.cart);
+    },
+    confirmPurchase: (state) => {
+      state.cart = [];
+      saveBrowserCartStorage(state.cart);
     }
   }
 });
@@ -97,7 +102,8 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   applyVoucher,
-  productsPurchased
+  productsPurchased,
+  confirmPurchase
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

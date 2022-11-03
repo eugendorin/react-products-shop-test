@@ -8,8 +8,7 @@ import { Select, FormGroupItem } from "components";
 import { useCountries } from "api";
 import { useMemo } from "react";
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 
 const schema = yup
   .object({
@@ -31,7 +30,7 @@ const schema = yup
   })
   .required();
 
-export default function BillingForm() {
+export default function BillingForm({ onSubmit }) {
   const {
     register,
     handleSubmit,
@@ -42,11 +41,10 @@ export default function BillingForm() {
   });
 
   const { countries, isLoading: isLoadingCountries } = useCountries();
-  const onSubmit = (data) => console.log(data);
 
   const countriesOptions = useMemo(() => {
-    return countries.map(({ code, name }) => ({
-      value: code,
+    return countries.map(({ name }) => ({
+      value: name,
       label: name
     }));
   }, [countries]);
